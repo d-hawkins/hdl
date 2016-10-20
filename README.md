@@ -14,7 +14,7 @@ The repository is split into a library of reusable IP components and a boards fo
 | boards/           | Top-level of the boards folder  |
 |                   |                                 |
 | boards/altera/    | Altera development boards       |
-| boards/microsemi/ | Microsemi development Boards    |
+| boards/microsemi/ | Microsemi development boards    |
 | boards/xilinx/    | Xilinx development boards       |
 
 
