@@ -19,3 +19,5 @@ The repository is split into a library of reusable IP components and a boards fo
 
 
 Feel free to use these components in your own designs.
+
+Note: this is a work-in-progress, please be patient!
