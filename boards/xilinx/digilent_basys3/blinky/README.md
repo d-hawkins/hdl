@@ -10,13 +10,13 @@ the LEDs.
 
 To synthesize the design;
 
-1. Start Vivado.
-2. Use the Tcl console to change directory to the project folder, eg.,
+* Start Vivado.
+* Use the Tcl console to change directory to the project folder, eg.,
 ~~~~
 tcl> cd {C:\github\hdl\boards\xilinx\digilent_basys3\blinky}
 ~~~~
-3. Source the synthesis script, i.e.,
+* Source the synthesis script, i.e.,
 ~~~~
 tcl> source scripts/synth.tcl
 ~~~~
-4. After the bit-file is generated, program the Basys-3 board.
+* After the bit-file is generated, program the Basys-3 board.
