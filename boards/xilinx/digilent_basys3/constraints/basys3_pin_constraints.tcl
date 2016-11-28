@@ -26,8 +26,8 @@
 #    If this file is added to a project, then Tcl puts output from
 #    may appear in the following log files;
 #
-#    C:\temp\vivado\basys3\blinky\vwork\project_1.runs\synth_1\runme.log
-#    C:\temp\vivado\basys3\blinky\vwork\project_1.runs\impl_1\runme.log
+#    hdl\boards\xilinx\digilent_basys3\blinky\vwork\project_1.runs\synth_1\runme.log
+#    hdl\boards\xilinx\digilent_basys3\blinky\vwork\project_1.runs\impl_1\runme.log
 #
 #    The Tcl command "set_property PACKAGE_PIN ..." should only be
 #    used during implementation. The command will fail if called
