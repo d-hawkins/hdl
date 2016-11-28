@@ -174,10 +174,12 @@ set pin(eth_txd[3])  {PACKAGE_PIN = H17, IOSTANDARD = LVCMOS33, OFFCHIP_TERM = N
 # QSPI Flash
 # -----------------------------------------------------------------
 #
-# The QSPI clock signal uses the CCLK configuration pin. This pin
-# must be accessed by instantiating the STARTUPE2 primitive.
+# The QSPI clock signal uses the CCLK (E9) configuration pin. The
+# E9 pin must be accessed by instantiating the STARTUPE2 primitive.
+# The Arty board also connects pin L16 to the clock signal.
 #
 set pin(qspi_cs_n)  {PACKAGE_PIN = L13, IOSTANDARD = LVCMOS33, SLEW = SLOW, DRIVE = 8, OFFCHIP_TERM = NONE}
+set pin(qspi_sck)   {PACKAGE_PIN = L16, IOSTANDARD = LVCMOS33, SLEW = SLOW, DRIVE = 8, OFFCHIP_TERM = NONE}
 set pin(qspi_dq[0]) {PACKAGE_PIN = K17, IOSTANDARD = LVCMOS33, SLEW = SLOW, DRIVE = 8, OFFCHIP_TERM = NONE}
 set pin(qspi_dq[1]) {PACKAGE_PIN = K18, IOSTANDARD = LVCMOS33, SLEW = SLOW, DRIVE = 8, OFFCHIP_TERM = NONE}
 set pin(qspi_dq[2]) {PACKAGE_PIN = L14, IOSTANDARD = LVCMOS33, SLEW = SLOW, DRIVE = 8, OFFCHIP_TERM = NONE}
