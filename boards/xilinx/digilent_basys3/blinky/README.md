@@ -13,7 +13,7 @@ To synthesize the design;
 * Start Vivado.
 * Use the Tcl console to change directory to the project folder, eg.,
 ~~~~
-tcl> cd {C:\github\hdl\boards\xilinx\digilent_basys3\blinky}
+tcl> cd {C:\github\d-hawkins\hdl\boards\xilinx\digilent_basys3\blinky}
 ~~~~
 * Source the synthesis script, i.e.,
 ~~~~
