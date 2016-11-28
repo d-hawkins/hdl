@@ -19,10 +19,10 @@
 # and setup the source and constraints.
 #
 # The user can then synthesize the design, generate the bit-file,
-# and then configure the Basys-3 board. For example, once the
-# Vivado GUI for the project opens, click "Generate Bitstream"
-# and when that completes, use the hardware manager to detect
-# the Basys-3 board, and program it.
+# and then configure the board. For example, once the Vivado GUI
+# for the project opens, click "Generate Bitstream" and when that
+# completes, use the hardware manager to detect the board, and
+# program it.
 #
 # -----------------------------------------------------------------
 # Notes
