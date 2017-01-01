@@ -81,6 +81,7 @@ architecture top of arty is
 	-- RGB LED color
 	signal led_rgb_color : std_logic_vector(2 downto 0);
 	signal led_rgb_en    : std_logic_vector(3 downto 0);
+	signal led_rgb_duty  : std_logic;
 
 begin
 
@@ -124,10 +125,13 @@ begin
 	led_rgb_color <= std_logic_vector(count(CNT_WIDTH-LED_RGB_WIDTH+6 downto CNT_WIDTH-LED_RGB_WIDTH+4));
 	led_rgb_en    <= std_logic_vector(count(CNT_WIDTH-LED_RGB_WIDTH+3 downto CNT_WIDTH-LED_RGB_WIDTH));
 
-	led_rgb( 2 downto 0) <= led_rgb_color when (led_rgb_en(0) = '1') else "000";
-	led_rgb( 5 downto 3) <= led_rgb_color when (led_rgb_en(1) = '1') else "000";
-	led_rgb( 8 downto 6) <= led_rgb_color when (led_rgb_en(2) = '1') else "000";
-	led_rgb(11 downto 9) <= led_rgb_color when (led_rgb_en(3) = '1') else "000";
+	led_rgb( 2 downto 0) <= led_rgb_color when (led_rgb_duty = '1' and led_rgb_en(0) = '1') else "000";
+	led_rgb( 5 downto 3) <= led_rgb_color when (led_rgb_duty = '1' and led_rgb_en(1) = '1') else "000";
+	led_rgb( 8 downto 6) <= led_rgb_color when (led_rgb_duty = '1' and led_rgb_en(2) = '1') else "000";
+	led_rgb(11 downto 9) <= led_rgb_color when (led_rgb_duty = '1' and led_rgb_en(3) = '1') else "000";
+
+	-- 12.5% duty-cycle
+	led_rgb_duty <= '1' when (count(2 downto 0) = "000") else '0';
 
 	-- --------------------------------------------------------
 	-- UART loopback
