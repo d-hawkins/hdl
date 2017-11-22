@@ -3,7 +3,7 @@
 11/21/2017 D. W. Hawkins (dwh@caltech.edu)
 
 The 'blinky_osc' LED design is a minimal demonstration of the MiniZed board.
-The design blinks the blue DONE and the green/red bi-color RGB LEDs. The design
+The design blinks the blue DONE LED and the bi-color green/red LED. The design
 uses the 65MHz on-FPGA oscillator (accessed via the STARTUPE2 component).
 
 This design does not use the Zynq-7 processor block.
