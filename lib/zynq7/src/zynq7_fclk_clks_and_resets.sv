@@ -18,7 +18,7 @@
 //
 //     $XILINX\Vivado\2017.2\data\vhdl\src\unisims\unisim_VCOMP.vhd
 //     $XILINX\Vivado\2017.2\data\verilog\src\unisim_comp.v
-//     $XILINX\Xilinx\Vivado\2017.2\data\verilog\src\unisims\PS7.v
+//     $XILINX\Vivado\2017.2\data\verilog\src\unisims\PS7.v
 //
 // ----------------------------------------------------------------
 
