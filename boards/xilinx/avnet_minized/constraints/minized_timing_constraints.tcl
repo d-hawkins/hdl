@@ -23,3 +23,13 @@ if {[llength $port]} {
 	create_clock -period 15.000 -name clk_65MHz -add $port
 }
 
+# Zynq-7 PS-to-PL FCLK clocks
+set port [get_pins -quiet {*/FCLKCLK[0]}]
+if {[llength $port]} {
+	create_clock -period 10.000 -name fclk_100MHz -add $port
+}
+set port [get_pins -quiet {*/FCLKCLK[1]}]
+if {[llength $port]} {
+	create_clock -period 20.000 -name fclk_50MHz -add $port
+}
+
