@@ -14,7 +14,10 @@
 // References
 // ----------
 //
-// [1] Xilinx, Vivado unisim component definitions, 2017.2.
+// [1] Xilinx, "PG082: Processing System 7", Product Guide,
+//     version 5.5, May, 2017.
+//
+// [2] Xilinx, Vivado unisim component definitions, 2017.2.
 //
 //     $XILINX\Vivado\2017.2\data\vhdl\src\unisims\unisim_VCOMP.vhd
 //     $XILINX\Vivado\2017.2\data\verilog\src\unisim_comp.v
