@@ -6,6 +6,19 @@
 # Digilent Arty device constraints file.
 #
 # -----------------------------------------------------------------
+# Notes
+# -----
+#
+# 1. Device constraints
+#
+#    The simplest way to determine the list of possible device
+#    constraints is to open a synthesized design, select the
+#    top-level design, and then look at the properties. New
+#    properties can be added using the user interface. Once
+#    a property has been changed, the Tcl command can be added
+#    to this script.
+#
+# -----------------------------------------------------------------
 # References
 # ----------
 #
@@ -43,3 +56,8 @@ set_property CONFIG_VOLTAGE 3.3  [current_design]
 # list_property_value CONFIG_MODE [current_design]
 # SPIx1 SPIx2 SPIx4 M_SERIAL S_SERIAL BPI8 BPI16 S_SELECTMAP S_SELECTMAP16 S_SELECTMAP32 B_SCAN M_SELECTMAP M_SELECTMAP16
 
+# -----------------------------------------------------------------
+# JTAG USERCODE
+# -----------------------------------------------------------------
+#
+set_property BITSTREAM.CONFIG.USERID 0xDEADBEEF [current_design]
