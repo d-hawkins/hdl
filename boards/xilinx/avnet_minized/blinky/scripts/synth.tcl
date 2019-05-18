@@ -35,6 +35,30 @@
 #    The generated script was rearranged and redundant default
 #    settings were eliminated.
 #
+# 2. Avnet Vivado Board Definition Files
+#
+#    Vivado can be used to manually construct a project targeting
+#    the Minized board after installing the board definition file.
+#
+#    Avnet Github repo:
+#    https://github.com/Avnet/bdf
+#
+#    Do not copy all the board files from the repo, since not
+#    all versions of Vivado support all boards.
+#
+#    Manual project creation can be used to update this script,
+#    after writing the project Tcl file to determine any new
+#    features supported by Vivado.
+#
+#    This script does not require the Minized board file to run.
+#    The script uses the device details, not the "board_part"
+#    Vivado Tcl property.
+#
+# 3. Vivado synthesis (and hardware download) tests
+#
+#    5/18/2019: Vivado 2017.4.1
+#    5/18/2019: Vivado 2018.2.1
+#
 # -----------------------------------------------------------------
 
 # -----------------------------------------------------------------
@@ -45,6 +69,12 @@
 set toolname [file rootname [file tail [info nameofexecutable]]]
 if {![string equal $toolname "vivado"]} {
 	error "Error: unexpected tool name '$toolname'!"
+}
+
+# Vivado version
+set toolversion [lindex [split [version -short] .] 0]
+if {![string length $toolversion]} {
+	error "Error: tool version could not be detected!"
 }
 
 # -----------------------------------------------------------------
@@ -168,12 +198,15 @@ foreach filename $filenames {
 # Synthesis Run
 # -----------------------------------------------------------------
 #
+# Flow string
+set flow "Vivado Synthesis $toolversion"
+
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-  create_run -name synth_1 -part $project(part) -flow {Vivado Synthesis 2017} -strategy "Vivado Synthesis Defaults" -constrset constrs_1
+  create_run -name synth_1 -part $project(part) -flow $flow -strategy "Vivado Synthesis Defaults" -constrset constrs_1
 } else {
   set_property strategy "Vivado Synthesis Defaults" [get_runs synth_1]
-  set_property flow "Vivado Synthesis 2017" [get_runs synth_1]
+  set_property flow $flow [get_runs synth_1]
 }
 set obj [get_runs synth_1]
 set_property part $project(part) $obj
@@ -185,12 +218,15 @@ current_run -synthesis $obj
 # Implementation Run
 # -----------------------------------------------------------------
 #
+# Flow string
+set flow "Vivado Implementation $toolversion"
+
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-  create_run -name impl_1 -part $project(part) -flow {Vivado Implementation 2017} -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
+  create_run -name impl_1 -part $project(part) -flow $flow -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
 } else {
   set_property strategy "Vivado Implementation Defaults" [get_runs impl_1]
-  set_property flow "Vivado Implementation 2017" [get_runs impl_1]
+  set_property flow $flow [get_runs impl_1]
 }
 set obj [get_runs impl_1]
 set_property part $project(part) $obj
