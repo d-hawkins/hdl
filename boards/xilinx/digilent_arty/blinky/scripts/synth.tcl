@@ -3,7 +3,7 @@
 #
 # 11/26/2016 D. W. Hawkins (dwh@caltech.edu)
 #
-# Digilent Arty 'blinky' Vivado synthesis script.
+# Digilent Arty C.0 'blinky' Vivado synthesis script.
 #
 # Script execution;
 #
@@ -31,9 +31,52 @@
 # 1. Synthesis Tcl script
 #
 #    This synthesis script was created based on the output from
-#    File->Write Project Tcl after manually creating a project.
+#    "File->Project->Write Tcl", or "File->Write Project Tcl" on
+#    older tool versions, after manually creating a project.
 #    The generated script was rearranged and redundant default
 #    settings were eliminated.
+#
+# 2. Digilent Vivado Board Files
+#
+#    Vivado can be used to manually construct a project targeting
+#    the Arty board after installing the Digilent board file
+#    for the Arty board.
+#
+#    Digilent Github repo:
+#    https://github.com/Digilent/vivado-boards
+#
+#    There are several Arty versions:
+#    https://store.digilentinc.com/arty
+#
+#    This script targets the Arty Revision C.0 hardware:
+#    https://github.com/Digilent/vivado-boards/tree/master/new/board_files/arty/C.0
+#
+#    Check out the repo and copy the board file into the
+#    Vivado installation folder:
+#    C:\software\Xilinx\Vivado\<version>\data\boards\board_files
+#
+#    Do not copy all the board files from the repo, since not
+#    all versions of Vivado support all boards.
+#
+#    Manual project creation can be used to update this script,
+#    after writing the project Tcl file to determine any new
+#    features supported by Vivado.
+#
+#    This script does not require the Arty board file to run.
+#    The script uses the device details, not the "board_part"
+#    Vivado Tcl property.
+#
+# 3. Vivado synthesis (and hardware download) tests
+#
+#    5/18/2019: Vivado 2017.4.1
+#    5/18/2019: Vivado 2018.2.1
+#
+# -----------------------------------------------------------------
+# References
+# ----------
+#
+# [1] Digilent, "Arty", Revisions A-C reference documentation.
+#     https://reference.digilentinc.com/reference/programmable-logic/arty/start
 #
 # -----------------------------------------------------------------
 
@@ -45,6 +88,12 @@
 set toolname [file rootname [file tail [info nameofexecutable]]]
 if {![string equal $toolname "vivado"]} {
 	error "Error: unexpected tool name '$toolname'!"
+}
+
+# Vivado version
+set toolversion [lindex [split [version -short] .] 0]
+if {![string length $toolversion]} {
+	error "Error: tool version could not be detected!"
 }
 
 # -----------------------------------------------------------------
@@ -169,12 +218,15 @@ foreach filename $filenames {
 # Synthesis Run
 # -----------------------------------------------------------------
 #
+# Flow string
+set flow "Vivado Synthesis $toolversion"
+
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-  create_run -name synth_1 -part $project(part) -flow {Vivado Synthesis 2016} -strategy "Vivado Synthesis Defaults" -constrset constrs_1
+  create_run -name synth_1 -part $project(part) -flow $flow -strategy "Vivado Synthesis Defaults" -constrset constrs_1
 } else {
   set_property strategy "Vivado Synthesis Defaults" [get_runs synth_1]
-  set_property flow "Vivado Synthesis 2016" [get_runs synth_1]
+  set_property flow $flow [get_runs synth_1]
 }
 set obj [get_runs synth_1]
 set_property part $project(part) $obj
@@ -186,12 +238,15 @@ current_run -synthesis $obj
 # Implementation Run
 # -----------------------------------------------------------------
 #
+# Flow string
+set flow "Vivado Implementation $toolversion"
+
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-  create_run -name impl_1 -part $project(part) -flow {Vivado Implementation 2016} -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
+  create_run -name impl_1 -part $project(part) -flow $flow -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
 } else {
   set_property strategy "Vivado Implementation Defaults" [get_runs impl_1]
-  set_property flow "Vivado Implementation 2016" [get_runs impl_1]
+  set_property flow $flow [get_runs impl_1]
 }
 set obj [get_runs impl_1]
 set_property part $project(part) $obj
