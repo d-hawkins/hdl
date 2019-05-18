@@ -47,6 +47,12 @@ if {![string equal $toolname "vivado"]} {
 	error "Error: unexpected tool name '$toolname'!"
 }
 
+# Vivado version
+set toolversion [lindex [split [version -short] .] 0]
+if {![string length $toolversion]} {
+	error "Error: tool version could not be detected!"
+}
+
 # -----------------------------------------------------------------
 # Location check
 # -----------------------------------------------------------------
@@ -168,12 +174,15 @@ foreach filename $filenames {
 # Synthesis Run
 # -----------------------------------------------------------------
 #
+# Flow string
+set flow "Vivado Synthesis $toolversion"
+
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-  create_run -name synth_1 -part $project(part) -flow {Vivado Synthesis 2017} -strategy "Vivado Synthesis Defaults" -constrset constrs_1
+  create_run -name synth_1 -part $project(part) -flow $flow -strategy "Vivado Synthesis Defaults" -constrset constrs_1
 } else {
   set_property strategy "Vivado Synthesis Defaults" [get_runs synth_1]
-  set_property flow "Vivado Synthesis 2017" [get_runs synth_1]
+  set_property flow $flow [get_runs synth_1]
 }
 set obj [get_runs synth_1]
 set_property part $project(part) $obj
@@ -185,12 +194,15 @@ current_run -synthesis $obj
 # Implementation Run
 # -----------------------------------------------------------------
 #
+# Flow string
+set flow "Vivado Implementation $toolversion"
+
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-  create_run -name impl_1 -part $project(part) -flow {Vivado Implementation 2017} -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
+  create_run -name impl_1 -part $project(part) -flow $flow -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
 } else {
   set_property strategy "Vivado Implementation Defaults" [get_runs impl_1]
-  set_property flow "Vivado Implementation 2017" [get_runs impl_1]
+  set_property flow $flow [get_runs impl_1]
 }
 set obj [get_runs impl_1]
 set_property part $project(part) $obj
