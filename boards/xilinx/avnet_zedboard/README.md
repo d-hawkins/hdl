@@ -31,7 +31,7 @@ This directory contains example designs for the Avnet Zedboard.
 * 2 PS push buttons (PB1 and PB2)
 * 5 PL push buttons (arranged in a joystick pattern)
 * 8 PL DIP switches
-* 1 PS red LED
+* 1 PS green LED
 * 8 PL red LEDs
 * 1 PL blue DONE LED
 * FMC-LPC (without transceivers)
