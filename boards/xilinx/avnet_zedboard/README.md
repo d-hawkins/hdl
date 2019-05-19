@@ -62,3 +62,7 @@ configured as follows:
  QSPI Boot    |         |    1    |    0    |    0    |         
  SD Card Boot |         |    1    |    1    |    0    |         
  PLL Enabled  |    0    |         |         |         |         
+
+For more details on the configuration settings, see Table 18 in the
+Zedboard Hardware User's Guide and Table 6-4 "Boot Mode MIO Strapping Pins"
+in the Zynq-7000 TRM (UG585).
