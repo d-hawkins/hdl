@@ -47,3 +47,18 @@ Documentation | http://zedboard.org/support/documentation/1521
 Reference Designs | http://zedboard.org/support/design/1521/11
 Avnet Github | https://github.com/Avnet
 Avnet Board Files | https://github.com/Avnet/bdf
+
+# Configuration Mode Settings
+
+The jumpers that control the Zedboard power-on configuration mode can be
+configured as follows:
+
+ Description  | MODE[4] | MODE[3] | MODE[2] | MODE[1] | MODE[0]
+--------------|---------|---------|---------|---------|---------
+ MIO bit      | MIO[6]  | MIO[5]  | MIO[4]  | MIO[3]  | MIO[2]  
+ Jumper       | JP11    | JP10    | JP9     | JP8     | JP 7    
+ JTAG Chain   |         |         |         |         |    0    
+ JTAG Boot    |         |    0    |    0    |    0    |         
+ QSPI Boot    |         |    1    |    0    |    0    |         
+ SD Card Boot |         |    1    |    1    |    0    |         
+ PLL Enabled  |    0    |         |         |         |         
