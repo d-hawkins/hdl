@@ -15,14 +15,9 @@
 #
 #    tcl> source scripts/synth.tcl
 #
-# The script will create the vwork/ directory, create a project,
-# and setup the source and constraints.
-#
-# The user can then synthesize the design, generate the bit-file,
-# and then configure the board. For example, once the Vivado GUI
-# for the project opens, click "Generate Bitstream" and when that
-# completes, use the hardware manager to detect the board, and
-# program it.
+# The script will create the vwork/ directory, create a project, setup the
+# source and constraints, synthesize, and generate the bitstream. The user
+# can then use the hardware manager to detect the board, and program it.
 #
 # -----------------------------------------------------------------------------
 # Notes
