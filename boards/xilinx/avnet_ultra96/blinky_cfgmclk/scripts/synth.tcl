@@ -56,11 +56,6 @@
 #    The script uses the device details, not the "board_part"
 #    Vivado Tcl property.
 #
-# 3. Vivado synthesis (and hardware download) tests
-#
-#    5/18/2019: Vivado 2017.4.1
-#    5/18/2019: Vivado 2018.2.1
-#
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
