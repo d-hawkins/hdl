@@ -3,7 +3,7 @@
 #
 # 10/29/2022 D. W. Hawkins (dwh@caltech.edu)
 #
-# Avnet Ultra96 'blinky_osc' Vivado synthesis script.
+# Avnet Ultra96 Vivado synthesis script.
 #
 # Script execution;
 #
